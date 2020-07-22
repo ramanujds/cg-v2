@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SteramsDemo {
@@ -29,8 +30,12 @@ public class SteramsDemo {
 //		
 //		System.out.println("Sum = "+sum);
 		
-		int sum=items.stream().mapToInt(i->i*i).filter(i->i%2==0).sum();
-		System.out.println("Sum = "+sum);
+		List<Integer> nums=items.stream()
+								.filter(i->i%2==0)
+								.map(i->i*i)
+								.collect(Collectors.toList());
+		System.out.println(nums);
+		//System.out.println("Sum = "+sum);
 	}
 
 }
