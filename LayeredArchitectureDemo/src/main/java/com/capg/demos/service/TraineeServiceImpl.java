@@ -1,19 +1,22 @@
 package com.capg.demos.service;
 
+import java.sql.SQLException;
+
 import com.capg.demos.dao.TraineeDao;
 import com.capg.demos.dao.TraineeDaoCollectionsBasedImpl;
+import com.capg.demos.dao.TraineeDaoJdbcBasedImpl;
 import com.capg.demos.model.Trainee;
 
 public class TraineeServiceImpl implements TraineeService {
 	
 	TraineeDao dao;
-	public TraineeServiceImpl() {
-		dao=new TraineeDaoCollectionsBasedImpl();
+	public TraineeServiceImpl() throws SQLException {
+		dao=new TraineeDaoJdbcBasedImpl();
 	}
 
 	@Override
-	public void addTrainee(Trainee trainee) {
-		dao.addTrainee(trainee);
+	public Trainee addTrainee(Trainee trainee) throws SQLException {
+		return dao.addTrainee(trainee);
 		
 	}
 

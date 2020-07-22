@@ -5,8 +5,9 @@ import com.capg.demos.model.Trainee;
 public class TraineeDaoCollectionsBasedImpl implements TraineeDao {
 
 	@Override
-	public void addTrainee(Trainee trainee) {
+	public Trainee addTrainee(Trainee trainee) {
 		// TODO Auto-generated method stub
+		return null;
 		
 	}
 
