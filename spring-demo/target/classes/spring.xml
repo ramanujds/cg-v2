@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ 
+ 	<bean id="airtel" class="com.capg.demo.spring.Airtel">
+ 	<constructor-arg name="callCharge" value="2"/>
+ 	<constructor-arg name="browsingSpeed" value="25"/>
+ 	</bean>
+ 	<bean id="vodafone" class="com.capg.demo.spring.Vodafone">
+ 	<property name="callCharge" value="1.5"/>
+ 	<property name="browsingSpeed" value="10"/>
+ 	</bean>
+	<bean id="mobile" class="com.capg.demo.spring.Mobile">
+	<property name="sim" ref="vodafone"/>
+	</bean>
+
+</beans>
