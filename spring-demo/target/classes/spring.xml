@@ -1,20 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
- 
- 	<bean id="airtel" class="com.capg.demo.spring.Airtel">
- 	<constructor-arg name="callCharge" value="2"/>
- 	<constructor-arg name="browsingSpeed" value="25"/>
- 	</bean>
- 	<bean id="vodafone" class="com.capg.demo.spring.Vodafone">
- 	<property name="callCharge" value="1.5"/>
- 	<property name="browsingSpeed" value="10"/>
- 	</bean>
-	<bean id="mobile" class="com.capg.demo.spring.Mobile">
-	<property name="sim" ref="vodafone"/>
+
+	<bean id="airtel" class="com.capg.demo.spring.Airtel">
+		<constructor-arg name="callCharge" value="2" />
+		<constructor-arg name="browsingSpeed" value="25" />
+		
+		<property name="supportedNetworks">
+			<list>
+				<value>GSM</value>
+				<value>Edge</value>
+				<value>HSPA</value>
+				<value>LTE</value>
+				<value>VoLTE</value>
+			</list>	
+		</property>
+
+ 		
 	</bean>
+
+<!--
+	<bean id="vodafone" class="com.capg.demo.spring.Vodafone">
+		<property name="callCharge" value="1.5" />
+		<property name="browsingSpeed" value="10" />
+		<property name="supportedNetworks">
+			<map>
+				<entry key="EDGE" value="2008"/>
+				<entry key="HSPA" value="2010"/>
+				<entry key="LTE" value="2016"/>
+				<entry key="VolTE" value="2017"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="sim" class="com.capg.demo.spring.Vodafone">
+		<property name="callCharge" value="1.5" />
+		<property name="browsingSpeed" value="10" />
+		<property name="supportedNetworks">
+			<map>
+				<entry key="EDGE" value="2008"/>
+				<entry key="HSPA" value="2010"/>
+				<entry key="LTE" value="2016"/>
+				<entry key="VolTE" value="2017"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="mobile1" class="com.capg.demo.spring.Mobile">
+		<property name="sim" ref="vodafone" />
+	</bean>
+	 -->
+	 
+	<bean id="mobile2" class="com.capg.demo.spring.Mobile" autowire="byType">
+	</bean>	
+	 
+	
 
 </beans>

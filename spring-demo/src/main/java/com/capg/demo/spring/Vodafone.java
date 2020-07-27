@@ -1,10 +1,29 @@
 package com.capg.demo.spring;
 
+import java.util.Map;
+import java.util.Set;
+
 public class Vodafone implements Sim {
 
 	private float browsingSpeed;
 	private float callCharge;
+private Map<String,Integer> supportedNetworks;
 	
+	
+	
+	
+	public Map<String, Integer> getSupportedNetworks() {
+	return supportedNetworks;
+}
+
+
+
+public void setSupportedNetworks(Map<String, Integer> supportedNetworks) {
+	this.supportedNetworks = supportedNetworks;
+}
+
+
+
 	public Vodafone() {
 		// TODO Auto-generated constructor stub
 	}
@@ -44,6 +63,12 @@ public class Vodafone implements Sim {
 	public void browse() {
 		System.out.println("Browsing with Vodafone.. Speed - "+browsingSpeed+"mb/s");
 
+	}
+	public void showSupportedNets() {
+		System.out.println("Supported Networks - Years");
+		supportedNetworks.forEach(
+				(n,y)->System.out.printf("%-20s %-5d\n",n,y)
+				);
 	}
 
 

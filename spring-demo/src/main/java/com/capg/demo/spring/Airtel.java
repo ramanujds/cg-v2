@@ -1,10 +1,23 @@
 package com.capg.demo.spring;
 
+import java.util.List;
+
 public class Airtel implements Sim {
 
 	private float browsingSpeed;
 	private float callCharge;
+	private List<String> supportedNetworks;
 	
+	
+	
+	public List<String> getSupportedNetworks() {
+		return supportedNetworks;
+	}
+
+	public void setSupportedNetworks(List<String> supportedNetworks) {
+		this.supportedNetworks = supportedNetworks;
+	}
+
 	public Airtel() {
 		// TODO Auto-generated constructor stub
 	}
@@ -41,6 +54,11 @@ public class Airtel implements Sim {
 	public void browse() {
 		System.out.println("Browsing with Airtel.. Speed - "+browsingSpeed+"mb/s");
 
+	}
+	
+	public void showSupportedNets() {
+		System.out.println("Supported Networks are - ");
+		supportedNetworks.forEach(n->System.out.println(n));
 	}
 
 }
