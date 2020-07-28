@@ -2,10 +2,21 @@ package com.capg.demo.spring;
 
 import java.util.List;
 
-public class Airtel implements Sim {
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+@Component("airtel")
+@Lazy
+@Scope("prototype")
+public class Airtel implements Sim, InitializingBean {
 
+	@Value("${airtel.browsingSpeed}")
 	private float browsingSpeed;
+	@Value("${airtel.callCharge}")
 	private float callCharge;
+	@Value("#{${airtel.supportedNetworks}}")
 	private List<String> supportedNetworks;
 	
 	
@@ -19,7 +30,7 @@ public class Airtel implements Sim {
 	}
 
 	public Airtel() {
-		// TODO Auto-generated constructor stub
+		System.out.println("Airtel Bean Created");
 	}
 	
 	public Airtel(float browsingSpeed, float callCharge) {
@@ -59,6 +70,12 @@ public class Airtel implements Sim {
 	public void showSupportedNets() {
 		System.out.println("Supported Networks are - ");
 		supportedNetworks.forEach(n->System.out.println(n));
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("Airtel Sim Initialized");
+		
 	}
 
 }

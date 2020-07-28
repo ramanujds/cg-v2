@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="airtel" class="com.capg.demo.spring.Airtel">
+	<bean id="airtel" class="com.capg.demo.spring.Airtel" init-method="initv2()" destroy-method="destroyv2()">
 		<constructor-arg name="callCharge" value="2" />
 		<constructor-arg name="browsingSpeed" value="25" />
 		
