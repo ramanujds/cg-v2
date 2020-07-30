@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Trainee Found :
-<p>ID : ${trainee.id} </p>
-<p>Name : ${trainee.tName}</p>
-<p>Email : ${trainee.email}</p>
+<h2>Hello ${tname}</h2>
 </body>
 </html>

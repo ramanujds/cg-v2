@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-Trainee Found :
-<p>ID : ${trainee.id} </p>
-<p>Name : ${trainee.tName}</p>
-<p>Email : ${trainee.email}</p>
+<form action="/add" method="post">
+Enter Trainee Name <input type="text" name="txtName">
+<input type="submit" value="Enter">
+</form>
 </body>
 </html>
