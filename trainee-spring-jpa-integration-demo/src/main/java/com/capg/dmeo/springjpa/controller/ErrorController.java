@@ -24,4 +24,17 @@ public class ErrorController {
 	}
 	
 	
+	//
+	//
+	//
+	//
+	//
+	
+	@ExceptionHandler(value = {Exception.class})
+	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+	public ErrorResponse handleOtherException(Exception ex,HttpServletRequest req) {
+		return new ErrorResponse(new Date(), ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), HttpStatus.INTERNAL_SERVER_ERROR.value(), req.getRequestURI());
+	}
+	
+	
 }
