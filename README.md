@@ -25,3 +25,34 @@
             <version>11.2.0</version>
         </dependency>
   ```
+
+
+## Microservices Steps -
+
+* Called movie rating and movie catelog services from movie info using RestTemplate
+
+* Introduced Naming Server and Load Balancer
+   
+   ** Created a starter Project with Eureka Server Dependency
+   ** Add @EnableEurekaServer annotation to Configuration
+
+* Registering Services with Eureka
+
+    ** Add Netflix Eureka Client Dependency to Movie-Rating, Movie-Info and Movie-Catelog Services
+    
+    ** Add @EnableEurekaClient annotation to Movie-Rating, Movie-Info and Movie-Catelog Services configurations
+    
+ * Service Discovery and Load Balancing
+    
+    ** Add @LoadBalanced to RestTemplate Bean
+   
+    ** Replace all the uris(initial part) with service name
+    
+    
+ 
+    
+ 
+   
+    
+    
+    
