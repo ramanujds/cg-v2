@@ -1,37 +1,29 @@
 package com.capg.demo.movie.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
 
-@Entity
 public class MovieRating {
-	@Id private int id;
+	private int id;
 	private double rating; 
-	@Transient
-	int port;
+	private int port;
 	public MovieRating() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	
+	public MovieRating(int id, double rating) {
+		super();
+		this.id = id;
+		this.rating = rating;
+	}
+
+
 	public int getPort() {
 		return port;
 	}
 
 
-
 	public void setPort(int port) {
 		this.port = port;
-	}
-
-
-
-	public MovieRating(int id, double rating) {
-		super();
-		this.id = id;
-		this.rating = rating;
 	}
 
 

@@ -1,6 +1,7 @@
 package com.capg.demo.movie.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -12,13 +13,24 @@ public class MovieRatingService {
 
 	@Autowired
 	MovieRatingRepo repo;
+	@Autowired
+	Environment env;
+	
+	public int getPortNo() {
+		return Integer.parseInt(env.getProperty("local.server.port"));
+		
+	}
 	
 	public MovieRating getRating(int id) {
-		return repo.getOne(id);
+		MovieRating rating= repo.getOne(id);
+		rating.setPort(getPortNo());
+		return rating;
 	}
 	
 	public MovieRating addRating(MovieRating rating) {
-		return repo.save(rating);
+		MovieRating savedRating=  repo.save(rating);
+		savedRating.setPort(getPortNo());
+		return savedRating;
 		}
 	
 }
