@@ -29,6 +29,8 @@ public class MovieCatelogService {
 		 return savedCatelog;
 	}
 	
+	
+	
 	public MovieCatelog getCatelog(int id) {
 		MovieCatelog savedCatelog=repo.getOne(id);
 		savedCatelog.setPort(GetPortNo());

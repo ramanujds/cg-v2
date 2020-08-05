@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capg.demo.movie.model.MovieCatelog;
 import com.capg.demo.movie.service.MovieCatelogService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 public class MovieCatelogController {
@@ -27,13 +28,22 @@ public class MovieCatelogController {
 	//savedCatelog.setPort(GetPortNo());
 	
 	@GetMapping("/catelog/id/{id}")
-	public MovieCatelog getMovieInfo(@PathVariable int id) {
+	@HystrixCommand(fallbackMethod = "getMovieInfoFallback")
+	public MovieCatelog getMovieInfo(@PathVariable int id) throws InterruptedException {
+		
+			Thread.sleep(5000);
+		
 		return service.getCatelog(id);
 	}
 	
 	@PostMapping("/catelog/add")
+
 	public MovieCatelog addMovieCatelog(@RequestBody MovieCatelog catelog) {
 		return service.addCatelog(catelog);
+	}
+	
+	public MovieCatelog getMovieInfoFallback(@PathVariable int id) {
+		return new MovieCatelog(id, "WAR");
 	}
 
 }
