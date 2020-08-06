@@ -1,6 +1,7 @@
 package com.capg.demo.movie.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,10 +14,32 @@ public class MovieInfoService {
 
 	@Autowired
 	RestTemplate rt;
+	@Value("${rating.get-uri}")
+	private String ratingGetUri;
+	@Value("${catelog.get-uri}")
+	private String catelogGetUri;
 	
+	
+	
+	public String getRatingGetUri() {
+		return ratingGetUri;
+	}
+
+	public void setRatingGetUri(String ratingGetUri) {
+		this.ratingGetUri = ratingGetUri;
+	}
+
+	public String getCatelogGetUri() {
+		return catelogGetUri;
+	}
+
+	public void setCatelogGetUri(String catelogGetUri) {
+		this.catelogGetUri = catelogGetUri;
+	}
+
 	public MovieInfo getMovieInfo(int id) {
-		MovieCatelog catelog=rt.getForObject("http://MOVIE-CATELOG-SERVICE/catelog/id/"+id, MovieCatelog.class);
-		MovieRating rating=rt.getForObject("http://MOVIE-RATING-SERVICE/rating/id/"+id, MovieRating.class);
+		MovieCatelog catelog=rt.getForObject("http://MOVIE-CATELOG-SERVICE/"+catelogGetUri+id, MovieCatelog.class);
+		MovieRating rating=rt.getForObject("http://MOVIE-RATING-SERVICE/"+ratingGetUri+id, MovieRating.class);
 		MovieInfo info=new MovieInfo(id,catelog.getMovieName(),rating.getRating());
 		info.setMovieCatelogPort(catelog.getPort());
 		info.setMovieRatingPort(rating.getPort());
