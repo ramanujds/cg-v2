@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: movie-gateway-server
+server:  port: 8888
+
+
+zuul:
+  routes:    movie-info:
+      path: /info/**
+      service-id: movie-info-service
+      strip-prefix: false
+      
+    movie-rating:
+      path: /rating/**
+      service-id: movie-rating-service
+      strip-prefix: false
+      
+    movie-catelog:
+      path: /catelog/**
+      service-id: movie-catelog-service
+      strip-prefix: false
+      

@@ -32,8 +32,6 @@ public class MovieCatelogController {
 	//@HystrixCommand(fallbackMethod = "getMovieInfoFallback")//,
 
 	public MovieCatelog getMovieInfo(@PathVariable int id) {
-			System.out.println("I'm Here");
-			int x=5/0;
 			return service.getCatelog(id);
 	}
 	
