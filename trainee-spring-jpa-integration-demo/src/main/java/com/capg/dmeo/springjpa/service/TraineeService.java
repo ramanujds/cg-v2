@@ -44,7 +44,6 @@ public class TraineeService {
 	@Transactional
 	public List<Trainee> getAllTrainees(){
 		// return repo.getAllTrainees();
-		int x=5/0;
 		return dataJpaRepo.findAll();
 	
 	}
