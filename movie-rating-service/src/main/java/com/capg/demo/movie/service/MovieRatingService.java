@@ -5,6 +5,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.capg.demo.movie.exception.MovieNotFoundException;
 import com.capg.demo.movie.model.MovieRating;
 import com.capg.demo.movie.repo.MovieRatingRepo;
 
@@ -22,6 +23,9 @@ public class MovieRatingService {
 	}
 	
 	public MovieRating getRating(int id) {
+		if(!repo.existsById(id)) {
+			throw new MovieNotFoundException("Movie with id ["+id+"] is Not Available");
+		}
 		MovieRating rating= repo.getOne(id);
 		rating.setPort(getPortNo());
 		return rating;

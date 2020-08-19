@@ -3,6 +3,7 @@ package com.capg.demo.movie.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.capg.demo.movie.model.MovieCatelog;
@@ -39,7 +40,11 @@ public class MovieInfoService {
 
 	public MovieInfo getMovieInfo(int id) {
 		MovieCatelog catelog=rt.getForObject("http://MOVIE-CATELOG-SERVICE/"+catelogGetUri+id, MovieCatelog.class);
-		MovieRating rating=rt.getForObject("http://MOVIE-RATING-SERVICE/"+ratingGetUri+id, MovieRating.class);
+		//MovieCatelog catelog=new MovieCatelog(id, "Dummy Movie");
+		MovieRating rating=new MovieRating(id,4.4);
+	
+			//rating=rt.getForObject("http://MOVIE-RATING-SERVICE/"+ratingGetUri+id, MovieRating.class);
+		
 		MovieInfo info=new MovieInfo(id,catelog.getMovieName(),rating.getRating());
 		info.setMovieCatelogPort(catelog.getPort());
 		info.setMovieRatingPort(rating.getPort());

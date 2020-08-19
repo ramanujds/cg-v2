@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.capg.demo.movie.exception.MovieNotFoundException;
 import com.capg.demo.movie.model.MovieCatelog;
 import com.capg.demo.movie.repo.MovieCatelogRepo;
 
@@ -32,6 +33,11 @@ public class MovieCatelogService {
 	
 	
 	public MovieCatelog getCatelog(int id) {
+	
+		if(!repo.existsById(id)) {
+			throw new MovieNotFoundException("Movie with ID:["+id+"] Not Found");
+		}
+		
 		MovieCatelog savedCatelog=repo.getOne(id);
 		savedCatelog.setPort(GetPortNo());
 		System.out.println(savedCatelog);

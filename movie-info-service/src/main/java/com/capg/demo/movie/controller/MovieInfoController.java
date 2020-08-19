@@ -20,18 +20,18 @@ public class MovieInfoController {
 	
 	@GetMapping(value = "/info/id/{id}")
 	//,produces = {"application/json"})
-	@HystrixCommand(fallbackMethod = "getMovieInfoFallback"
-			,
-			commandProperties = {
-					@HystrixProperty(name ="execution.timeout.enabled", value = "true" ),
-					@HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
-					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value="2000"),
-					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
-					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
-					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value="5000")
-									
-			}
-	)
+//	@HystrixCommand(fallbackMethod = "getMovieInfoFallback"
+//			,
+//			commandProperties = {
+//					@HystrixProperty(name ="execution.timeout.enabled", value = "true" ),
+//					@HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
+//					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value="2000"),
+//					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
+//					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
+//					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value="5000")
+//									
+//			}
+//	)
 	public MovieInfo getMovieInfo(@PathVariable int id) {
 		return service.getMovieInfo(id);
 	}
