@@ -54,9 +54,55 @@
     
     
  
-    
  
-   
-    
-    
+ ## SonarCube Steps
+
+* Step 1 - Download Sonar Cube (7.7)
+
+* Step 2 - Extract and run StartSonar.bat
+
+* Step 3 - Add global maven settings
+
+- .m2/settings.xml
+
+```xml
+
+<settings>
+    <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+    </pluginGroups>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>
+                  http://localhost:9000
+                </sonar.host.url>
+            </properties>
+        </profile>
+     </profiles>
+</settings>
+
+```
+
+
+* Step 4 - Add Dependency to pom.xml
+
+```xml
+
+<dependency>
+	<groupId>org.sonarsource.scanner.maven</groupId>
+  		<artifactId>sonar-maven-plugin</artifactId>
+    	<version>3.6.0.1398</version>
+</dependency>
+
+```
+
+* Step 5 - Run as Maven Build with Goal as _ clean verify sonar:sonar _
+
+* Step 6 - visit localhost:9000
     
