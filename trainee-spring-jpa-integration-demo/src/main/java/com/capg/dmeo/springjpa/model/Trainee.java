@@ -21,9 +21,7 @@ public class Trainee {
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate traineeDob;
 	
-	public Trainee() {
-		// TODO Auto-generated constructor stub
-	}
+	public Trainee() {}
 
 	public Trainee(int traineeId, String traineeName, String traineeDomain, String traineeLocation, LocalDate traineeDob) {
 		super();

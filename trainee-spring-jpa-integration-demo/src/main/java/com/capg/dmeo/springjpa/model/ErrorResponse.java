@@ -9,9 +9,7 @@ public class ErrorResponse {
 	String status;
 	int error;
 	String path;
-	public ErrorResponse() {
-		// TODO Auto-generated constructor stub
-	}
+	public ErrorResponse() {}
 	public Date getDate() {
 		return date;
 	}

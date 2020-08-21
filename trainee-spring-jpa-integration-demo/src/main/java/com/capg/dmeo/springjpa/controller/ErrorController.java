@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
+
 
 import com.capg.dmeo.springjpa.errors.InvalidDOBException;
 import com.capg.dmeo.springjpa.errors.TraineeAlreadyExistsException;
