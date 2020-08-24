@@ -89,7 +89,6 @@
 
 ```
 
-
 * Step 4 - Add Dependency to pom.xml
 
 ```xml
@@ -105,4 +104,142 @@
 * Step 5 - Run as Maven Build with Goal as _ clean verify sonar:sonar _
 
 * Step 6 - visit localhost:9000
-    
+
+
+## Standard Comment (Sample)
+
+### Sample 1
+
+```java
+
+/*
+ * Project Name : 
+ *
+ * 
+ * */
+package com.capgemini.pecunia.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.capgemini.pecunia.dao.AccountDao;
+import com.capgemini.pecunia.dao.LoanRequestDao;
+import com.capgemini.pecunia.entity.AccountDetails;
+import com.capgemini.pecunia.entity.LoanRequests;
+import com.capgemini.pecunia.exception.BankAccountNotFound;
+
+/**
+* The LoanRequestServiceImp class implements  that implements loanRequest
+*
+* @author  : Harsh Kumar
+* @version : 1.0
+* @since   : DD-MM-YYYY 
+*/
+@Service
+public class LoanRequestServiceImp implements LoanRequestService {
+	
+	
+	// Tells the application context to inject an instance of LoanRequestDao here
+	@Autowired
+	LoanRequestDao dao;
+	
+	// Tells the application context to inject an instance of AccountDao here
+	@Autowired
+	AccountDao account;
+
+	/**
+   * This method is used to process loan request. 
+   * @param  loanreq :This is the  paramter to process loanreq
+   * @return String  : This returns String message,else else throws
+   * an exception which is handled globally
+   */
+	
+	
+	@Override
+	public String loanRequest(LoanRequests loanreq) {
+		
+		String s1 = loanreq.getAccountId();
+		Optional<AccountDetails> details = account.findById(s1);
+
+		if (details.isPresent()) {
+			dao.save(loanreq);
+
+			return "Your Loan Request is successful";
+		} else {
+
+			throw new BankAccountNotFound("No BankAccount found with " + loanreq.getAccountId()
+					+ "\n You need to have an Bank Account to applay Loan");
+		}
+
+	}
+
+}
+
+```
+
+### Sample 2
+
+```java
+
+/*
+ * Project Name : 
+ *
+ * 
+ * */
+package com.capgemini.pecunia.controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capgemini.pecunia.entities.Transactions;
+import com.capgemini.pecunia.service.PassbookMaintenanceService;
+
+
+/**
+* The PassbookController class implements an implements updatePassbook method
+*
+* @author   :Harsh Kumarr
+* @version  :1.0
+* @since    :YYYY-MM-DD 
+*/
+@RestController
+@RequestMapping("/bank")
+@CrossOrigin(origins = "http://localhost:4200")
+public class PassbookController {
+
+	// Tells the application context to inject an instance of PassbookMaintenanceService here
+	@Autowired
+	private PassbookMaintenanceService service;
+
+	//Fetching the transactions till last updated date
+	
+   /**
+   * This method is used to Fetching the transactions till last updated date. 
+   * @param accountId       :This is the  paramter 
+   * @return ResponseEntity : This returns list of Transactions
+   */
+   
+	@GetMapping("/updatePassbook/{accountId}")
+	public  ResponseEntity<List<Transactions>> updatePassbook(@PathVariable("accountId") String accountId)
+	{
+			List<Transactions> list = service.updatePassbook(accountId);
+			return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
+		}
+		
+}
+
+
+
+```
+
+
