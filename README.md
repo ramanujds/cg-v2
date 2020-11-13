@@ -101,7 +101,7 @@
 
 ```
 
-* Step 5 - Run as Maven Build with Goal as _ clean verify sonar:sonar _
+* Step 5 - Run as Maven Build with Goal as ** clean verify sonar:sonar **
 
 * Step 6 - visit localhost:9000
 
