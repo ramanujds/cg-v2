@@ -1,4 +1,4 @@
-# capgemini-v2
+# Student Demo Programs and Instructions
 
 ## Tasks to be completed
 
